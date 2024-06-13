@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>My Resume</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
     <style>
         body, html {
             margin: 0;
@@ -11,50 +11,60 @@
             height: 100%;
             width: 100%;
             font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
-        .header {
-            background-color: #343a40;
-            color: white;
-            padding: 10px 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            background-color: #f0f0f0;
         }
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-            color: #f8f9fa;
+        .auth-container {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
-        .iframe-container {
-            position: absolute;
-            top: 50px;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            overflow: hidden;
+        .auth-container h1 {
+            margin-bottom: 20px;
         }
-        .iframe-container iframe {
+        .auth-container input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
             width: 100%;
-            height: 100%;
+        }
+        .auth-container button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #343a40;
+            color: white;
             border: none;
-            display: block;
-            margin-top: -4px; /* This should remove any gap */
+            cursor: pointer;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>My Resume</h1>
+    <div class="auth-container">
+        <h1>Enter Access Code</h1>
+        <input type="password" id="accessCode" placeholder="Access Code">
+        <button onclick="authenticate()">Submit</button>
     </div>
-    <div class="iframe-container">
-        <iframe src="cv.pdf" frameborder="0" scrolling="auto"></iframe>
-    </div>
+    <script>
+        function authenticate() {
+            const enteredCode = document.getElementById('accessCode').value;
+            const validCode = '1411'; // Replace with your valid code
+
+            if (enteredCode === validCode) {
+                localStorage.setItem('authenticated', 'true');
+                window.location.href = 'main.html'; // Redirect to the main page
+            } else {
+                alert('Invalid code. Please try again.');
+            }
+        }
+
+        // Check if already authenticated
+        if (localStorage.getItem('authenticated') === 'true') {
+            window.location.href = 'main.html';
+        }
+    </script>
 </body>
 </html>
