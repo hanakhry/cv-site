@@ -65,14 +65,17 @@
             const validCode = '1411'; // Replace with your valid code
 
             if (enteredCode === validCode) {
+                sessionStorage.setItem('authenticated', 'true');
                 window.location.href = 'main.html'; // Redirect to the main page
             } else {
                 alert('Invalid code. Please try again.');
             }
         }
 
-        // Ensure no session is kept
-        localStorage.removeItem('authenticated');
+        // Check if already authenticated
+        if (sessionStorage.getItem('authenticated') === 'true') {
+            window.location.href = 'main.html';
+        }
     </script>
 </body>
 </html>
