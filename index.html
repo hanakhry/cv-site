@@ -33,20 +33,19 @@
             color: #f8f9fa;
         }
         .iframe-container {
-            position: fixed;
+            position: absolute;
             top: 50px;
             bottom: 0;
             left: 0;
             right: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow: hidden;
         }
         .iframe-container iframe {
             width: 100%;
-            height: calc(100% - 50px);
+            height: 100%;
             border: none;
             display: block;
+            margin-top: -4px; /* This should remove any gap */
         }
     </style>
 </head>
